@@ -1,0 +1,42 @@
+<div class="container" >
+    <form [formGroup] ="menuForm" action="" class="form-content">
+        <h3>Mise à jour</h3>
+        <label for="">Libelle</label><br>
+        <div class="">
+            <input id= "libelle" type="text" formControlName="libelle" placeholder="libelle" required>
+        </div>
+
+        <div class="">
+            <label for="">Icon</label><br>
+            <input id= "icon" type="text" formControlName="icon" placeholder="icon" required>
+        </div>
+
+        <div class="">
+            <label for="">Route</label><br>
+            <input id= "route" type="text" formControlName="route" placeholder="route" required>
+        </div>
+        <div>
+            <label for=""> Profil</label><br>
+            <select  class="" id= "profilId" type="number" formControlName="profilId" placeholder="profilId" required>
+                <option *ngFor="let profil of profils" [ngValue]="profil.id">{{profil.nom}}</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for=""> Parent</label><br>
+            <select class=""  id= "parent" type="number" formControlName="parentId" placeholder="parentId" required>
+                <option *ngFor="let menu of menus" [ngValue]="menu.id">{{menu.id}}</option>
+            </select>
+        </div>
+
+        <div>
+            <label for=""> Priorite</label><br>
+            <select class="" id= "priorite" type="number" formControlName="priorite" placeholder="priorite" required>
+                <option *ngFor="let priorite of priorites" [ngValue]="priorite">{{priorite}}</option>
+            </select>
+            
+        </div>
+        <div class="">
+            <button (click)="updateMenu()" type="submit" class="btn">Submit</button>
+        </div>
+    </form>

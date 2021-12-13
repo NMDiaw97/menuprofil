@@ -1,0 +1,11 @@
+<div class="content" role="main">
+<!-- Liste profils -->
+<h2>Profils existants</h2>
+<p>Cette page affiche les différents profils des utilisateurs:</p>
+
+<div class="card-container" *ngFor="let profil of profils" (click) ="goToMenu(profil.id)" >
+  <a class="card" target="_blank" rel="noopener" >
+    <span >{{profil.nom}}</span>
+  </a>
+</div>
+</div>
