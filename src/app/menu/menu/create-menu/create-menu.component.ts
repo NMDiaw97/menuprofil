@@ -17,7 +17,8 @@ export class CreateMenuComponent implements OnInit {
   menuForm!: FormGroup;
   profils!: any;
   menus!: any;
-  priorite =[1,2,3,4,5]
+  priorite =[1,2,3,4,5];
+  message: boolean = false;
   
   
 
@@ -42,6 +43,35 @@ export class CreateMenuComponent implements OnInit {
     })
   }
 
+  get libelle(){
+    return this.menuForm.get('libelle');
+  }
+
+  get code(){
+    return this.menuForm.get('code');
+  }
+
+  get icon(){
+    return this.menuForm.get('icon');
+  }
+
+  get parentId(){
+    return this.menuForm.get('parentId');
+  }
+
+  get pr(){
+    return this.menuForm.get('priorite');
+  }
+
+  get r(){
+    return this.menuForm.get('route');
+  }
+
+  get profil(){
+    return this.menuForm.get('profilId');
+  }
+
+
   get f(){
     return  this.menuForm.controls;
   }
@@ -60,7 +90,7 @@ export class CreateMenuComponent implements OnInit {
     this.menuService.createItem('menus', newMenu).subscribe(
       res => {
         console.log(res);
-        alert("added successfully");
+        this.message=true;
       },
       error =>{
         alert("error")
@@ -72,8 +102,16 @@ export class CreateMenuComponent implements OnInit {
   }
 
   onSubmit(){
+    if(this.menuForm.invalid){
+      return;
+    }
     this.makeMenu();
+    
   }
+
+removeMessage(){
+  this.message = false;
+}
 
   getProfil(){
     this.menuService.getItems('profils').subscribe(

@@ -16,6 +16,7 @@ export class UpdateMenuComponent implements OnInit {
   menu!: Menu
   priorites = [1, 2, 3, 4, 5]
   profils: any;
+  message: boolean = false;
 
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private menuService: StoreService) { }
@@ -49,6 +50,34 @@ export class UpdateMenuComponent implements OnInit {
     })
   }
 
+  get libelle(){
+    return this.menuForm.get('libelle');
+  }
+
+  get code(){
+    return this.menuForm.get('code');
+  }
+
+  get icon(){
+    return this.menuForm.get('icon');
+  }
+
+  get parentId(){
+    return this.menuForm.get('parentId');
+  }
+
+  get pr(){
+    return this.menuForm.get('priorite');
+  }
+
+  get r(){
+    return this.menuForm.get('route');
+  }
+
+  get profil(){
+    return this.menuForm.get('profilId');
+  }
+
   get f() {
     return this.menuForm.controls;
   }
@@ -67,7 +96,14 @@ export class UpdateMenuComponent implements OnInit {
 
 
   onSubmit() {
+    if(this.menuForm.invalid){
+      return;
+    }
     this.updateMenu();
+    this.message=true;
+  }
+  removeMessage(){
+    this.message = false;
   }
 
   updateMenu() {
@@ -83,6 +119,7 @@ export class UpdateMenuComponent implements OnInit {
     this.menuService.updateItem<Menu>("menus", updatedMenu, this.id).subscribe(
       data => {
         console.log("saved menu",data)
+       
       }
     );
   }

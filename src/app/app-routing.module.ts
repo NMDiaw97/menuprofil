@@ -6,6 +6,7 @@ import { UpdateMenuComponent } from './menu/menu/update-menu/update-menu.compone
 import { ProfilComponent } from './profil/profil/profil.component';
 
 const routes: Routes = [
+  {path:"", component: ProfilComponent},
   {path:"create-menu", component: CreateMenuComponent},
   {path:"menu/:id", component: MenuComponent},
   {path:"profils", component: ProfilComponent},

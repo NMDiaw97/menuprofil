@@ -1,42 +1,71 @@
-<div class="container" >
-    <form [formGroup] ="menuForm" action="" class="form-content">
-        <h3>Mise à jour</h3>
-        <label for="">Libelle</label><br>
-        <div class="">
-            <input id= "libelle" type="text" formControlName="libelle" placeholder="libelle" required>
-        </div>
 
-        <div class="">
-            <label for="">Icon</label><br>
-            <input id= "icon" type="text" formControlName="icon" placeholder="icon" required>
-        </div>
+    
 
-        <div class="">
-            <label for="">Route</label><br>
-            <input id= "route" type="text" formControlName="route" placeholder="route" required>
-        </div>
-        <div>
-            <label for=""> Profil</label><br>
-            <select  class="" id= "profilId" type="number" formControlName="profilId" placeholder="profilId" required>
-                <option *ngFor="let profil of profils" [ngValue]="profil.id">{{profil.nom}}</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for=""> Parent</label><br>
-            <select class=""  id= "parent" type="number" formControlName="parentId" placeholder="parentId" required>
-                <option *ngFor="let menu of menus" [ngValue]="menu.id">{{menu.id}}</option>
-            </select>
-        </div>
+<div class="container" fxLayoutAlign="center center" fxFlexFill >
+   
+    <mat-card fxFlex="45">
+        <mat-toolbar class="toolbar">
+            <span>Mise à jour</span>
+          </mat-toolbar>
+          
+            <div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong >Success: </strong>
+                <span>menu updated</span>
+                <button (click)="removeMessage()" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+              </div>
+          
+        <form [formGroup]="menuForm" action="" class="form-content" (ngSubmit)="updateMenu()" fxLayoutAlign="stretch" fxLayout="column">
+            <mat-form-field>
+                <input matInput id="libelle" type="text" formControlName="libelle" placeholder="libelle" >
+                <span class="text-danger" *ngIf="libelle  && libelle.invalid && libelle.touched">libelle is required</span>
 
-        <div>
-            <label for=""> Priorite</label><br>
-            <select class="" id= "priorite" type="number" formControlName="priorite" placeholder="priorite" required>
-                <option *ngFor="let priorite of priorites" [ngValue]="priorite">{{priorite}}</option>
-            </select>
-            
-        </div>
-        <div class="">
-            <button (click)="updateMenu()" type="submit" class="btn">Submit</button>
-        </div>
-    </form>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput id="code" type="text" formControlName="code" placeholder="code" >
+                <span class="text-danger" *ngIf="code && code.invalid && code.touched">libelle is required</span>
+
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput id="icon" type="text" formControlName="icon" placeholder="icon" required >
+                <span class="text-danger" *ngIf="icon && icon.invalid && icon.touched "> icon is required</span>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput id="route" type="text" formControlName="route" placeholder="route" required>
+                <span class="text-danger" *ngIf="r && r.invalid && r.touched">route is required</span>
+
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Profil</mat-label>
+                <mat-select id="profil" type="number" formControlName="profilId" placeholder="profilId" required>
+                  <mat-option *ngFor="let profil of profils" [value]="profil.id">
+                    {{profil.nom}}
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+           
+              <mat-form-field>
+                <mat-label>Priorite</mat-label>
+                <mat-select id="priorite" type="number" formControlName="priorite" placeholder="priorite" required>
+                  <mat-option *ngFor="let priorite of priorites" [value]="priorite">
+                    {{priorite}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Parent</mat-label>
+                <mat-select id="parentId" type="number" formControlName="parentId" placeholder="parentId" required>
+                  <mat-option *ngFor="let menu of menus" [value]=menu.id>
+                    {{menu.id}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+                <button [disabled]="menuForm.invalid"class="mat-button" mat-raised-button  type="submit" >Submit</button>
+        </form>
+    </mat-card>
+</div>

@@ -1,14 +1,16 @@
-.form-content
-{
-    max-width: 500px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: rgb(178, 214, 245);
-    padding: 5% 5% 5% 5% ;
+.container mat-card{
+padding: 0px;
+margin-top: 300px;
+position: relative;
+}
+.form-content{
+    padding: 30px;
+}
+.toolbar{
+    text-align: center;
+    background-color: rgb(212, 209, 209);
 
 }
-div{
-    padding: 5px;
+.mat-button{
+   background-color: rgb(41, 117, 240);
 }
